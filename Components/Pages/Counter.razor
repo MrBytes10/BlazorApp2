@@ -1,0 +1,43 @@
+﻿@page "/counter"
+@rendermode InteractiveServer
+
+<PageTitle>Counter</PageTitle>
+
+<h1>Counter</h1>
+
+<p role="status">Current count: @currentCount</p>
+
+<button class="btn btn-primary" @onclick="IncrementCount"> Click me</button>
+
+<div class="m-4">
+    <!--Input event-->
+    <input type="text" @bind="text" />
+    <p>@text </p> <!--takes what we type-->
+</div>
+
+
+<!--Define Methods here -->
+@code {
+
+    private int currentCount = 0;
+    string text = "";
+    
+
+    [Parameter]
+    public int IncrementAmount { get; set; } = 1;
+
+    // Method for incrementing
+    private void IncrementCount()
+    {
+        currentCount += IncrementAmount; // or currentCount++;
+
+    }
+    //HandleInput Method
+    private void HandleInput(ChangeEventArgs e)
+    {
+        text = (string)e.Value!;
+        //throw new NotImplementedException();
+    }
+
+
+}
